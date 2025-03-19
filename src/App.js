@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Map, Marker } from 'pigeon-maps';
+import Map from 'pigeon-maps';
+import './App.css';
 
 // Default map settings
 const DEFAULT_CENTER = [54.0, 10.0]; // Europe center
