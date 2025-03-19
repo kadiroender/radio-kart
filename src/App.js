@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Map from 'pigeon-maps';
+import { Map } from 'pigeon-maps';
 import './App.css';
 
 // Default map settings
