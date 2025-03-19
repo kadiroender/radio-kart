@@ -19,10 +19,14 @@ function App() {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetchStations();
     fetchPopularCountries();
+    // Favorileri localStorage'dan yükle
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setFavorites(savedFavorites);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -307,6 +311,36 @@ function App() {
         />
       </div>
     );
+  };
+
+  const toggleFavorite = (station) => {
+    const isFavorite = favorites.some(fav => fav.id === station.id);
+    let newFavorites;
+
+    if (isFavorite) {
+      newFavorites = favorites.filter(fav => fav.id !== station.id);
+    } else {
+      newFavorites = [...favorites, station];
+    }
+
+    setFavorites(newFavorites);
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+  };
+
+  const addToBookmarks = (station) => {
+    const bookmark = {
+      title: station.name,
+      url: station.url,
+      favicon: station.favicon || 'https://www.google.com/favicon.ico'
+    };
+
+    if ('bookmarks' in window) {
+      window.bookmarks.create(bookmark)
+        .then(() => alert('Radyo istasyonu sık kullanılanlara eklendi!'))
+        .catch(error => console.error('Error adding bookmark:', error));
+    } else {
+      alert('Tarayıcınız sık kullanılanlar API\'sini desteklemiyor.');
+    }
   };
 
   if (loading) {
