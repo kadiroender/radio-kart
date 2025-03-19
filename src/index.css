@@ -1,0 +1,65 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'leaflet/dist/leaflet.css';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.station-marker {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color: #10b981;
+  transition: all 0.2s ease;
+}
+
+.station-marker:hover, .station-marker-active {
+  width: 16px !important;
+  height: 16px !important;
+  background-color: #059669;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+}
+
+.station-popup .leaflet-popup-content-wrapper {
+  background-color: #1f2937;
+  color: white;
+  border-radius: 10px;
+}
+
+.station-popup .leaflet-popup-tip {
+  background-color: #1f2937;
+}
+
+.search-overlay {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 600px;
+}
+
+.controls-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 600px;
+} 
